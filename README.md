@@ -1,6 +1,7 @@
 # Song Tunes
 
 Ruby Version => '2.6.1'
+Database => PostgreSQL '1.2.3'
 
 ## Summary 
 
@@ -21,21 +22,18 @@ User Stories:
 
 2. Run bundle install
 
-3. Run rails db:migrate
+3. Run rake db:setup
 
-4. Run rails db:seed
+4. Run rake db:migrate
 
-5. Run ruby bin/run.rb
+5. Run rake db:seed
+
+6. Run ruby bin/run.rb
 
 ![Image of Users](public/SongTunes.png)
 
-<!-- ## RSpec Tests 
+## RSpec Tests 
 
-1. There are tests for backend models written in Rpec
+1. There are tests for models in the lib folder written in Rpec
 
-2. Make sure models are running successfully by running rspec -->
-
-<!-- ## Heroku
-
-- Heroku Link: https://spn-backend.herokuapp.com/
-- EX: https://spn-backend.herokuapp.com/users -->
+2. Make sure models are running successfully by running rspec

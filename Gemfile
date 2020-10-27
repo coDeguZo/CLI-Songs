@@ -9,3 +9,4 @@ gem "require_all"
 gem "faker"
 gem 'pg'
 gem "tty-prompt"
+gem "rspec"

@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
     puts "***************************"
     input = gets.chomp
     artist = Song.all.find_all {|song| song.artist == input}
-    if !artist
+    if artist.length == 0
       puts "Artist Could Not Be Found"
     else
       puts "Artist: #{artist[0].artist}"
@@ -66,8 +66,8 @@ class User < ActiveRecord::Base
       s.title
     end
     song_hash = songs.inject(Hash.new(0)) {|h,v| h[v] += 1; h}
-    popular_song = song_hash.max_by do |key|
-      song_hash[key]
+    popular_song = song_hash.max_by do |key, value|
+      value
     end
     puts "* Popular Song *"
     puts "Song: #{popular_song.first}"

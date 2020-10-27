@@ -1,3 +1,5 @@
+require "tty-prompt"
+
 class CommandLineInterface
 
   # I can add a song to my library
@@ -6,6 +8,17 @@ class CommandLineInterface
   # I can search for songs in my library by title
   # I can get the number of users who have added the song to their library (how popular the song is)
   # I can find the most popular song
+
+  def logo
+    puts "*****************************************************************************"
+    puts '           _________                   ___________                          
+          /   _____/ ____   ____    ___\__    ___/_ __  ____   ____   ______
+          \_____  \ /  _ \ /    \  / ___\|    | |  |  \/    \_/ __ \ /  ___/
+          /        (  <_> )   |  \/ /_/  >    | |  |  /   |  \  ___/ \___ \ 
+        /_______  /\____/|___|  /\___  /|____| |____/|___|  /\___  >____  >
+                \/            \//_____/                   \/     \/     \/ '
+    puts "*****************************************************************************"
+  end
 
   def welcome
     puts "Hello!  Please enter your name to sign-in :)"
@@ -17,7 +30,7 @@ class CommandLineInterface
     # Refactor Later
     case user
       when nil
-        puts "Please use a valid username"
+        puts "Please use a valid username. Please sign back on."
         exit
       when user
         2.times {puts ""}
@@ -28,23 +41,22 @@ class CommandLineInterface
   end
 
   def welcome_menu(user)
-    puts "Please selection from the following options #{user.name}:"
-    puts "1. See All Songs"
-    puts "2. See my Songs"
-    puts "3. Add Song To Library"
-    puts "4. Exit"
-    choice = gets.chomp
-    case choice.to_i
-      when 1
+    system("clear")
+    logo
+    prompt = TTY::Prompt.new
+    choices = ["See All Songs", "See My Songs", "Add Song to Library", "Exit"]
+    choice = prompt.select("Select Item", choices)
+    case choice
+      when "See All Songs"
         puts songs = Song.all.map {|song| song.title}
         return_to_menu(user)
-      when 2
+      when "See My Songs"
         user.display_songs
         return_to_menu(user)
-      when 3
+      when "Add Song to Library"
         user.add_song
         return_to_menu(user)
-      when 4
+      when "Exit"
         puts "Come Back Soon!!"
         exit
     end
@@ -57,8 +69,11 @@ class CommandLineInterface
   end
 
   def run
+    system("clear")
+    logo
     welcome
     user = get_user
     welcome_menu(user)
   end
 end
+

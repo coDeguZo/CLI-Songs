@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   def display_songs
     puts "Your Discography"
     songs.each do |song|
-      puts "Song Name: #{song.title}"
+      puts "* Artist: #{song.artist} - Song Name: #{song.title}"
     end
   end
 
@@ -17,10 +17,11 @@ class User < ActiveRecord::Base
     add = Song.all.find {|song| song.title == input}
     if add == nil 
       puts "Song Not found :(. Please return to the Main Menu"
+    else
+      song_user_create = SongUser.create(user_id: self.id, song_id: add.id)
+      song_user_create.save
+      puts "Song Added!"
     end
-    song_user_create = SongUser.create(user_id: self.id, song_id: add.id)
-    song_user_create.save
-    puts "Song Added!"
   end
 
 end

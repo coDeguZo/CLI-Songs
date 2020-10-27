@@ -10,9 +10,11 @@ uzoma = User.create(name: "Uzoma")
 chibu = User.create(name: "Chibu")
 adamma = User.create(name: "Adamma")
 
-10.times do 
-  Song.create(title: Faker::Music.album)
-end
+song1 = Song.create(title: "The Box", artist: "Roddy Ricch")
+song2 = Song.create(title: "Don't Start Now", artist: "Dua Lipa")
+song3 = Song.create(title: "Life is Good", artist: "Future")
+song4 = Song.create(title: "Blinding Lights", artist: "The Weeknd")
+song5 = Song.create(title: "Circles", artist: "Post Malone")
 
 # User.all.each do |user|
 #   Song.all.each do |song|s
@@ -20,7 +22,7 @@ end
 #   end
 # end
 
-10.times do
+3.times do
   SongUser.create(user_id: User.all.sample.id, song_id: Song.all.sample.id)
 end
 

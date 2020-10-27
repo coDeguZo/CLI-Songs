@@ -15,12 +15,9 @@ song2 = Song.create(title: "Don't Start Now", artist: "Dua Lipa")
 song3 = Song.create(title: "Life is Good", artist: "Future")
 song4 = Song.create(title: "Blinding Lights", artist: "The Weeknd")
 song5 = Song.create(title: "Circles", artist: "Post Malone")
-
-# User.all.each do |user|
-#   Song.all.each do |song|s
-#     SongUser.create(user_id: user.id, song_id: song.id)
-#   end
-# end
+song6 = Song.create(title: "F Up Some Commas", artist: "Future")
+song7 = Song.create(title: "March Madness", artist: "Future")
+song8 = Song.create(title: "King", artist: "Future")
 
 3.times do
   SongUser.create(user_id: User.all.sample.id, song_id: Song.all.sample.id)

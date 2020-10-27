@@ -1,14 +1,6 @@
 require "tty-prompt"
 
 class CommandLineInterface
-
-  # I can add a song to my library
-  # I can see all the songs in my library
-  # I can search for songs in my library by artist
-  # I can search for songs in my library by title
-  # I can get the number of users who have added the song to their library (how popular the song is)
-  # I can find the most popular song
-
   def logo
     puts "*****************************************************************************"
     puts '           _________                   ___________                          
@@ -44,14 +36,37 @@ class CommandLineInterface
     system("clear")
     logo
     prompt = TTY::Prompt.new
-    choices = ["See All Songs", "See My Songs", "Add Song to Library", "Exit"]
+    choices = [
+      "See All Songs", 
+      "See My Songs", 
+      "Search By Artist", 
+      "Search By Title",
+      "My Most Popular Song",
+      "All Time Most Popular Song",
+      "Add Song to Library", 
+      "Exit"
+    ]
     choice = prompt.select("Select Item", choices)
     case choice
       when "See All Songs"
-        puts songs = Song.all.map {|song| song.title}
+        Song.all.each do |song|
+          puts "* Artist: #{song.artist} - Song: #{song.title}"
+        end
         return_to_menu(user)
       when "See My Songs"
         user.display_songs
+        return_to_menu(user)
+      when "Search By Artist"
+        user.search_songs_by_artist
+        return_to_menu(user)
+      when "Search By Title"
+        user.search_songs_by_title
+        return_to_menu(user)
+      when "My Most Popular Song"
+        user.most_popular_song
+        return_to_menu(user)
+      when "All Time Most Popular Song"
+        SongUser.all_time_popular_song
         return_to_menu(user)
       when "Add Song to Library"
         user.add_song

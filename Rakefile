@@ -1,3 +1,5 @@
+# Sinatra / Active Record / Rake gives us the rake commands pre-packaged
+
 require_relative 'config/environment'
 require 'sinatra/activerecord/rake'
 

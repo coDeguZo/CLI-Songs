@@ -5,7 +5,7 @@ Database => PostgreSQL '1.2.3'
 
 ## Summary 
 
-This is CLI project that allows users to check out check out a vast discography of songs from many different artists!
+This is CLI project that allows users to check out a vast discography of songs from many different artists!
 
 User Stories: 
   - I can view all the songs (User)
